@@ -22,7 +22,7 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
@@ -30,18 +30,23 @@ class UserController extends Controller
             'address' => 'nullable|string|max:255',
             'role_id' => 'required|exists:roles,id',
         ]);
-
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-            'phone_number' => $request->phone_number,
-            'address' => $request->address,
-            'role_id' => $request->role_id,
+    
+        $user = User::create([
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'password' => bcrypt($validatedData['password']),
+            'phone_number' => $validatedData['phone_number'],
+            'address' => $validatedData['address'],
+            'role_id' => $validatedData['role_id'],
         ]);
-
-        return redirect()->route('admin.users.index')->with('success', 'User created successfully.');
+    
+        if ($user) {
+            return redirect()->route('admin.users.index')->with('success', 'User created successfully.');
+        } else {
+            return redirect()->route('admin.users.create')->with('error', 'Failed to create user.');
+        }
     }
+    
 
     public function edit(User $user)
     {
