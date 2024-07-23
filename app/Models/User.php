@@ -23,6 +23,7 @@ class User extends Authenticatable
         'phone_number',
         'address',
         'profile_photo',
+        'role_id', // Added role_id to fillable attributes
     ];
 
     /**
@@ -45,10 +46,10 @@ class User extends Authenticatable
     ];
 
     /**
-     * The roles that belong to the user.
+     * Get the role that owns the user.
      */
-    public function roles()
+    public function role()
     {
-        return $this->belongsToMany(Role::class);
+        return $this->belongsTo(Role::class);
     }
 }
