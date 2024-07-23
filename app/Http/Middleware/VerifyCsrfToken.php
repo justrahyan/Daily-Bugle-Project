@@ -12,7 +12,6 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        // URIs that should be excluded from CSRF verification
-        'admin/users', // Add your URIs here
+        'admin/users', // Tambahkan URI yang ingin dikecualikan dari verifikasi CSRF
     ];
 }
