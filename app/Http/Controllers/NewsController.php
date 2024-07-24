@@ -12,7 +12,7 @@ class NewsController extends Controller
 {
     public function index()
     {
-        $news = News::with(['category', 'region'])->get();
+        $news = News::with(['category', 'region'])->paginate(10);
         return view('admin.news.index', compact('news'));
     }
 
