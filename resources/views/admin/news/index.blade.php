@@ -58,4 +58,7 @@
             </tbody>
         </table>
     </div>
+    <div class="mt-4">
+        {{ $news->links() }}
+    </div>
 @endsection
