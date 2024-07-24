@@ -3,13 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\News;
+use App\Models\Category;
+use App\Models\User;
 
 class AdminController extends Controller
 {
     public function index()
     {
-        // Logic untuk mengambil data dashboard
-        return view('admin.dashboard');
+        $totalNews = News::count();
+        $totalCategories = Category::count();
+        $totalUsers = User::count();
+
+        return view('admin.dashboard', compact('totalNews', 'totalCategories', 'totalUsers'));
     }
 
     public function manageNews()
