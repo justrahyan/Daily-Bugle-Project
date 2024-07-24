@@ -22,15 +22,40 @@
                 </a>
             </li>
 
-            <!-- Categories -->
-            <li>
-                <a href="{{ route('admin.categories') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
-                        <path d="M4 4h3V1H4v3zM4 10h3V7H4v3zM4 16h3v-3H4v3zM10 4h3V1h-3v3zM10 10h3V7h-3v3zM10 16h3v-3h-3v3zM16 4h3V1h-3v3zM16 10h3V7h-3v3zM16 16h3v-3h-3v3z"/>
+            <!-- Categories Dropdown -->
+            <li x-data="{ open: false }">
+                <button @click="open = !open" class="flex items-center justify-between p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group w-full">
+                    <div class="flex items-center">
+                        <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
+                            <path d="M4 4h3V1H4v3zM4 10h3V7H4v3zM4 16h3v-3H4v3zM10 4h3V1h-3v3zM10 10h3V7h-3v3zM10 16h3v-3h-3v3zM16 4h3V1h-3v3zM16 10h3V7h-3v3zM16 16h3v-3h-3v3z"/>
+                        </svg>
+                        <span class="ms-3 whitespace-nowrap">Kategori</span>
+                    </div>
+                    <svg x-bind:class="{'rotate-180': open, 'rotate-0': !open}" class="w-4 h-4 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                     </svg>
-                    <span class="flex-1 ms-3 whitespace-nowrap">Kategori</span>
-                </a>
+                </button>
+                <ul x-show="open" x-transition class="mt-2 space-y-2">
+                    <li>
+                        <a href="{{ route('admin.categories.index') }}" class="flex items-center p-2 pl-11 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
+                                <path d="M4 4h3V1H4v3zM4 10h3V7H4v3zM4 16h3v-3H4v3zM10 4h3V1h-3v3zM10 10h3V7h-3v3zM10 16h3v-3h-3v3zM16 4h3V1h-3v3zM16 10h3V7h-3v3zM16 16h3v-3h-3v3z"/>
+                            </svg>
+                            <span class="flex-1 ms-3 whitespace-nowrap">Kategori</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.regions.index') }}" class="flex items-center p-2 pl-11 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2a10 10 0 11-7.07 2.93A10 10 0 0112 2zm0 18a8 8 0 100-16 8 8 0 000 16z"/>
+                                <path d="M12 6a6 6 0 11-4.24 1.76A6 6 0 0112 6zm0 10a4 4 0 100-8 4 4 0 000 8z"/>
+                            </svg>
+                            <span class="flex-1 ms-3 whitespace-nowrap">Region</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
+
 
             <!-- Users -->
             <li>
