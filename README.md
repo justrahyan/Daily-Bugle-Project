@@ -60,11 +60,25 @@ Buat key baru project laravel:
 php artisan key:generate
 ```
 
+### Konfigurasi file static
+buat penyimpanan gambar news:
+```bash
+php artisan storage:link
+```
+
 ### Migrasi inisial laravel
 menjalankan semua migrasi awal project laravel:
 
 ```bash
 php artisan migrate
+
+```
+
+### Insert data awal
+memasukan data awal ke project laravel:
+
+```bash
+php artisan db:seed
 
 ```
 
