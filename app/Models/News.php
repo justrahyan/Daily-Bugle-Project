@@ -17,6 +17,7 @@ class News extends Model
         'image_url',
         'image_caption',
         'date',
+        'views',
     ];
 
     public function category()
