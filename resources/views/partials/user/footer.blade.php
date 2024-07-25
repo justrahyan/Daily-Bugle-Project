@@ -2,7 +2,7 @@
     <div class="w-full max-w-screen-xl mx-auto p-2 md:py-4">
         <div class="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0 md:space-x-2 rtl:space-x-reverse">
             <div class="flex items-center space-x-2 rtl:space-x-reverse">
-                <a href="https://flowbite.com/" class="flex items-center space-x-2 rtl:space-x-reverse">
+                <a href="{{ url('/') }}" class="flex items-center space-x-2 rtl:space-x-reverse">
                     <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
                     <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">News Talenthub</span>
                 </a>

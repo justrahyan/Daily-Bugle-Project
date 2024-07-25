@@ -2,7 +2,7 @@
 
 @section('content')
     <h1 class="text-2xl font-bold mb-4">Edit Pengguna</h1>
-    <form action="{{ route('admin.users.update', $user->id) }}" method="POST">
+    <form action="{{ route('admin.users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="mb-4">
@@ -28,6 +28,13 @@
         <div class="mb-4">
             <label for="address" class="block text-sm font-medium text-gray-700">Alamat</label>
             <input type="text" name="address" id="address" value="{{ $user->address }}" class="mt-1 block w-full">
+        </div>
+        <div class="mb-4">
+            <label for="profile_photo" class="block text-sm font-medium text-gray-700">Foto Profil</label>
+            <input type="file" name="profile_photo" id="profile_photo" class="mt-1 block w-full">
+            @if($user->profile_photo)
+                <img src="{{ Storage::url($user->profile_photo) }}" alt="{{ $user->name }}" class="w-20 h-20 mt-2">
+            @endif
         </div>
         <div class="mb-4">
             <label for="role_id" class="block text-sm font-medium text-gray-700">Role</label>

@@ -2,7 +2,7 @@
 
 @section('content')
     <h1 class="text-2xl font-bold mb-4">Tambah Pengguna</h1>
-    <form action="{{ route('admin.users.store') }}" method="POST">
+    <form action="{{ route('admin.users.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="mb-4">
             <label for="name" class="block text-sm font-medium text-gray-700">Nama</label>
@@ -27,6 +27,10 @@
         <div class="mb-4">
             <label for="address" class="block text-sm font-medium text-gray-700">Alamat</label>
             <input type="text" name="address" id="address" class="mt-1 block w-full">
+        </div>
+        <div class="mb-4">
+            <label for="profile_photo" class="block text-sm font-medium text-gray-700">Foto Profil</label>
+            <input type="file" name="profile_photo" id="profile_photo" class="mt-1 block w-full">
         </div>
         <div class="mb-4">
             <label for="role_id" class="block text-sm font-medium text-gray-700">Role</label>
