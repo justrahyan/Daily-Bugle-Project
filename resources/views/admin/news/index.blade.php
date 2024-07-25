@@ -16,6 +16,7 @@
                     <th scope="col" class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center">Kategori</th>
                     <th scope="col" class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center">Tanggal</th>
                     <th scope="col" class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center">Wilayah</th>
+                    <th scope="col" class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center">Dilihat</th>
                     <th scope="col" class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center">Aksi</th>
                 </tr>
             </thead>
@@ -36,6 +37,9 @@
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
                         {{ $newsItem->region->name }}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
+                        {{ $newsItem->views }}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium flex justify-center space-x-4">
                         <a href="{{ route('admin.news.edit', $newsItem->id) }}" class="text-blue-600 hover:text-blue-900 flex items-center">
