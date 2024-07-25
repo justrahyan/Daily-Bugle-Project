@@ -9,7 +9,9 @@
 </head>
 <body class="bg-gray-100 flex flex-col min-h-screen">
     <!-- Header -->
-    @include('partials.user.header', ['categories' => $categories])
+    <div class="container mx-auto py-2">
+        @include('partials.user.header', ['categories' => $categories])
+    </div>
 
     <div class="container mx-auto py-4">
         <!-- For large screens -->
@@ -20,7 +22,7 @@
             </main>
 
             <!-- Sidebar -->
-            <aside class="col-span-3 bg-gray-800 bg-opacity-85 text-white p-4 h-full rounded-lg transparent-sidebar">
+            <aside class="col-span-3 bg-gray-100 bg-opacity-85 divide-y divide-gray-100 text-gray-900 p-4 h-full rounded-lg shadow-lg">
                 @include('partials.user.sidebar', ['popularNews' => $popularNews, 'categories' => $categories])
             </aside>
         </div>
@@ -33,7 +35,7 @@
             </main>
 
             <!-- Sidebar -->
-            <aside class="bg-gray-800 bg-opacity-85 text-white p-4 h-full rounded-lg transparent-sidebar">
+            <aside class="col-span-3 bg-gray-100 bg-opacity-85 divide-y divide-gray-100 text-gray-900 p-4 h-full rounded-lg shadow-lg">
                 @include('partials.user.sidebar', ['popularNews' => $popularNews, 'categories' => $categories])
             </aside>
         </div>
@@ -41,24 +43,8 @@
 
     <!-- Footer -->
     @include('partials.user.footer')
-
-    <!-- Swiper JS -->
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var swiper = new Swiper('.swiper-container', {
-                loop: true,
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                },
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
-                slidesPerView: 1,
-            });
-        });
-    </script>
+    
+    <!-- Import Flowbite script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.5.3/flowbite.min.js"></script>
 </body>
 </html>
