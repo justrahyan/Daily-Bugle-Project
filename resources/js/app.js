@@ -1,7 +1,7 @@
 import './bootstrap';
 import 'alpinejs';
 import 'flowbite';
-import tinymce from 'tinymce';
+import tinymce from 'tinymce/tinymce';
 import 'tinymce/themes/silver';
 import 'tinymce/icons/default';
 import 'tinymce/plugins/advlist';
