@@ -1,4 +1,4 @@
-<nav class="bg-gray-100 rounded-lg border-gray-200 dark:bg-gray-900">
+<nav class="bg-gray-100 rounded-lg border-gray-200 dark:bg-gray-900 relative z-10">
     <div class="container mx-auto flex flex-wrap items-center justify-between p-4 space-x-4">
         <a href="{{ url('/') }}" class="flex items-center space-x-3 rtl:space-x-reverse">
             <img src="https://flowbite.com/docs/images/logo.svg" class="h-6 md:h-8" alt="Flowbite Logo" />
