@@ -3,7 +3,7 @@
 @section('content')
     <div class="w-full mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Start of new carousel -->
-        <div id="default-carousel"  class="relative w-full mb-8" data-carousel="slide" data-carousel-interval="6000">
+        <div id="default-carousel" class="relative w-full mb-8 z-0" data-carousel="slide" data-carousel-interval="6000">
             <!-- Carousel wrapper -->
             <div class="relative h-64 overflow-hidden rounded-lg md:h-80 lg:h-96">
                 @foreach ($news->take(5) as $index => $newsItem)
