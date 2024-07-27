@@ -16,6 +16,16 @@ class NewsController extends Controller
         return view('admin.news.index', compact('news'));
     }
 
+    public function detail($id)
+    {
+        $news = News::with(['category', 'region'])->findOrFail($id);
+        $categories = Category::all();
+        $regions = Region::all();
+        $relatedNews = News::where('category_id', $news->category_id)->where('id', '!=', $id)->take(3)->get();
+        $popularNews = News::with('category')->orderBy('views', 'desc')->take(5)->get();
+        return view('user.detail', compact('news', 'categories', 'regions','relatedNews','popularNews'));
+    }
+
     public function create()
     {
         $categories = Category::all();

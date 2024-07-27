@@ -7,12 +7,12 @@
             <!-- Carousel wrapper -->
             <div class="relative h-64 overflow-hidden rounded-lg md:h-80 lg:h-96">
                 @foreach ($news->take(5) as $index => $newsItem)
-                    <div class="{{ $index === 0 ? '' : 'hidden' }} duration-700 ease-in-out" data-carousel-item>
+                    <a href="{{ route('news.detail', $newsItem['id']) }}" class="{{ $index === 0 ? '' : 'hidden' }} duration-700 ease-in-out" data-carousel-item>
                         <img src="{{ asset('storage/' . $newsItem->image_url) }}" class="absolute block w-full h-full object-cover" alt="{{ $newsItem['title'] }}">
                         <div class="absolute bottom-0 left-0 bg-black bg-opacity-50 w-full p-4">
                             <h2 class="text-white text-lg md:text-xl lg:text-2xl font-bold">{{ $newsItem['title'] }}</h2>
                         </div>
-                    </div>
+                    </a>
                 @endforeach
             </div>
             <!-- Slider indicators -->
@@ -62,7 +62,7 @@
     <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
         <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab" data-tabs-toggle="#default-tab-content" role="tablist">
             <li class="me-2" role="presentation">
-                <button class="inline-block p-4 border-b-2 rounded-t-lg" id="editor-choice-tab" data-tabs-target="#editor-choice" type="button" role="tab" aria-controls="editor-choice" aria-selected="true">Feature</button>
+                <button class="inline-block p-4 border-b-2 rounded-t-lg" id="editor-choice-tab" data-tabs-target="#editor-choice" type="button" role="tab" aria-controls="editor-choice" aria-selected="true">Edukasi</button>
             </li>
             <li class="me-2" role="presentation">
                 <button class="inline-block p-4 border-b-2 rounded-t-lg" id="komunitas-tab" data-tabs-target="#komunitas" type="button" role="tab" aria-controls="komunitas" aria-selected="false">Komunitas</button>
@@ -76,19 +76,19 @@
         <div class="p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="editor-choice" role="tabpanel" aria-labelledby="editor-choice-tab">
             @if ($editorChoiceMain)
                 <div class="mb-4">
-                    {{-- <img src="{{ asset('storage/' . $editorChoiceMain->image_url) }}" alt="{{ $editorChoiceMain->title }}" class="w-full h-auto rounded-lg mb-4"> --}}
+                    {{-- <img src="{{ asset('storage/' . $editorChoiceMain->image_url) }}" alt="{{ $editorChoiceMain->title }}" class="w-full h-auto rounded-lg mb-4 object-cover"> --}}
                     <h2 class="text-xl font-bold">{{ $editorChoiceMain->title }}</h2>
                     <p class="text-sm text-gray-500 dark:text-gray-400">{{ \Carbon\Carbon::parse($editorChoiceMain->date)->format('F j, Y') }}</p>
                 </div>
             @else
                 <div class="mb-4">
-                    <h2 class="text-xl font-bold">Belum ada tulisan feature</h2>
+                    <h2 class="text-xl font-bold">Belum ada tulisan edukasi</h2>
                 </div>
             @endif
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 @foreach ($editorChoiceNews as $newsItem)
                     <a href="{{ route('news.detail', $newsItem->id) }}" class="flex items-center space-x-4">
-                        <img src="{{ asset('storage/' . $newsItem->image_url) }}" alt="{{ $newsItem->title }}" class="w-16 h-16 rounded-lg">
+                        <img src="{{ asset('storage/' . $newsItem->image_url) }}" alt="{{ $newsItem->title }}" class="w-16 h-16 rounded-lg object-cover">
                         <div>
                             <h3 class="text-md font-semibold">{{ $newsItem->title }}</h3>
                             <p class="text-sm text-gray-500 dark:text-gray-400">{{ \Carbon\Carbon::parse($newsItem->date)->format('F j, Y') }}</p>
@@ -100,7 +100,7 @@
         <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="komunitas" role="tabpanel" aria-labelledby="komunitas-tab">
             @if ($komunitasMain)
                 <div class="mb-4">
-                    {{-- <img src="{{ asset('storage/' . $komunitasMain->image_url) }}" alt="{{ $komunitasMain->title }}" class="w-full h-auto rounded-lg mb-4"> --}}
+                    {{-- <img src="{{ asset('storage/' . $komunitasMain->image_url) }}" alt="{{ $komunitasMain->title }}" class="w-full h-auto rounded-lg mb-4 object-cover"> --}}
                     <h2 class="text-xl font-bold">{{ $komunitasMain->title }}</h2>
                     <p class="text-sm text-gray-500 dark:text-gray-400">{{ \Carbon\Carbon::parse($komunitasMain->date)->format('F j, Y') }}</p>
                 </div>

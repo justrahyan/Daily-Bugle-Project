@@ -8,13 +8,15 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RegionController;
-
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\AdminProfileController;
 
 // Public routes
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/category/{category}', [HomeController::class, 'category'])->name('category');
 Route::get('/region/{region}', [HomeController::class, 'region'])->name('region');
-Route::get('/news/{id}', [HomeController::class, 'detail'])->name('news.detail');
+Route::get('/news/{id}', [NewsController::class, 'detail'])->name('news.detail');
+Route::get('/search', [SearchController::class, 'search'])->name('search');
 
 // Authentication routes
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login')->middleware('guest');
@@ -29,5 +31,7 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
     Route::resource('categories', CategoryController::class);
     Route::resource('regions', RegionController::class);
     Route::resource('users', UserController::class);
-    Route::get('/settings', [AdminController::class, 'settings'])->name('settings');
+
+    Route::get('/settings', [AdminProfileController::class, 'settings'])->name('settings');
+    Route::put('/settings', [AdminProfileController::class, 'update'])->name('settings.update');
 });

@@ -29,7 +29,7 @@ class UserController extends Controller
             'password' => 'required|string|min:8|confirmed',
             'phone_number' => 'nullable|string|max:15',
             'address' => 'nullable|string|max:255',
-            'profile_photo' => 'nullable|image|max:2048',
+            'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'role_id' => 'required|exists:roles,id',
         ]);
 
@@ -63,7 +63,7 @@ class UserController extends Controller
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
             'phone_number' => 'nullable|string|max:15',
             'address' => 'nullable|string|max:255',
-            'profile_photo' => 'nullable|image|max:2048',
+            'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'role_id' => 'required|exists:roles,id',
         ]);
 
@@ -93,5 +93,36 @@ class UserController extends Controller
         }
         $user->delete();
         return redirect()->route('admin.users.index')->with('success', 'User deleted successfully.');
+    }
+
+    // Admin Setting
+    public function setting()
+    {
+        $user = Auth::user();
+        return view('admin.setting', compact('user'));
+    }
+
+    public function updateSetting(Request $request)
+    {
+        $user = Auth::user(); // Ambil data pengguna yang sedang login
+
+        // Validasi input
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+            'password' => 'nullable|string|min:8|confirmed',
+        ]);
+
+        // Update data pengguna
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+
+        if ($request->filled('password')) {
+            $user->password = bcrypt($request->input('password'));
+        }
+
+        $user->save(); // Simpan perubahan
+
+        return redirect()->route('admin.setting')->with('success', 'Profil berhasil diperbarui.');
     }
 }

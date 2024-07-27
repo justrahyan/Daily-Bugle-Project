@@ -9,7 +9,7 @@ class CategorySeeder extends Seeder
 {
     public function run()
     {
-        $categories = ['Politik', 'Kesehatan', 'Teknologi', 'Hiburan', 'Olahraga'];
+        $categories = ['politik', 'kesehatan', 'teknologi', 'hiburan', 'olahraga','edukasi','komunitas','opini'];
 
         foreach ($categories as $category) {
             Category::create(['name' => $category]);

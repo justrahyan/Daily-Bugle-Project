@@ -7,7 +7,7 @@
         @method('PUT')
         <div class="mb-4">
             <label for="title" class="block text-gray-700">Judul:</label>
-            <input type="text" id="title" name="title" class="mt-1 block w-full" value="{{ $news->title }}" required>
+            <input type="text" id="title" name="title" class="mt-1 block w-full" value="{{ $news->title }}" autofocus required>
         </div>
         <div class="mb-4">
             <label for="body" class="block text-gray-700">Isi Berita:</label>

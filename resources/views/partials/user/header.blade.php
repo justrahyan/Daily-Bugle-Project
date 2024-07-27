@@ -2,7 +2,7 @@
     <div class="container mx-auto flex flex-wrap items-center justify-between p-4 space-x-4">
         <a href="{{ url('/') }}" class="flex items-center space-x-3 rtl:space-x-reverse">
             <img src="https://flowbite.com/docs/images/logo.svg" class="h-6 md:h-8" alt="Flowbite Logo" />
-            <span class="self-center text-lg md:text-2xl font-semibold whitespace-nowrap dark:text-white">News Talenthub</span>
+            <span class="self-center text-lg md:text-2xl font-semibold whitespace-nowrap dark:text-white">Daily Bugle</span>
         </a>
         <div class="flex items-center space-x-4 md:order-2">
             <button type="button" aria-controls="search-bar" aria-expanded="false" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 md:hidden" id="search-toggle">
@@ -12,13 +12,15 @@
                 <span class="sr-only">Search</span>
             </button>
             <div class="relative hidden md:block" id="search-bar">
-                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                    </svg>
-                    <span class="sr-only">Search icon</span>
-                </div>
-                <input type="text" id="search-navbar" class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search...">
+                <form action="{{ route('search') }}" method="GET">
+                    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                        </svg>
+                        <span class="sr-only">Search icon</span>
+                    </div>
+                    <input type="text" name="query" id="search-navbar" class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search...">
+                </form>
             </div>
             <a href="{{ route('login') }}" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
                 <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -116,82 +118,80 @@
         </ul>
     </div>
     <div id="search-container" class="fixed inset-x-0 top-16 z-50 hidden bg-white dark:bg-gray-800 md:hidden">
-        <div class="p-4">
-            <input type="text" class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search...">
-        </div>
+        <form action="{{ route('search') }}" method="GET">
+            <div class="p-4">
+                <input type="text" name="query" class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search News...">
+            </div>
+        </form>
     </div>
 </nav>
 
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-      const searchToggle = document.getElementById('search-toggle');
-      const menuToggle = document.getElementById('menu-toggle');
-      const navbarMenu = document.getElementById('navbar-menu');
-      const mobileMenu = document.getElementById('mobile-menu');
-      const moreCategoriesToggleMobile = document.getElementById('more-categories-toggle-mobile');
-      const moreCategoriesMobile = document.getElementById('more-categories-mobile');
-      const regionsToggleMobile = document.getElementById('regions-toggle-mobile');
-      const regionsMenuMobile = document.getElementById('regions-menu-mobile');
-      const moreCategoriesToggle = document.getElementById('more-categories-toggle');
-      const moreCategories = document.getElementById('more-categories');
-      const regionsToggle = document.getElementById('regions-toggle');
-      const regionsMenu = document.getElementById('regions-menu');
-      const searchContainer = document.getElementById('search-container');
+document.addEventListener('DOMContentLoaded', function() {
+    const searchToggle = document.getElementById('search-toggle');
+    const menuToggle = document.getElementById('menu-toggle');
+    const navbarMenu = document.getElementById('navbar-menu');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const moreCategoriesToggleMobile = document.getElementById('more-categories-toggle-mobile');
+    const moreCategoriesMobile = document.getElementById('more-categories-mobile');
+    const regionsToggleMobile = document.getElementById('regions-toggle-mobile');
+    const regionsMenuMobile = document.getElementById('regions-menu-mobile');
+    const moreCategoriesToggle = document.getElementById('more-categories-toggle');
+    const moreCategories = document.getElementById('more-categories');
+    const regionsToggle = document.getElementById('regions-toggle');
+    const regionsMenu = document.getElementById('regions-menu');
+    const searchContainer = document.getElementById('search-container');
+    const searchBar = document.getElementById('search-bar');
 
-      searchToggle.addEventListener('click', function() {
-          navbarMenu.classList.add('hidden');
-          mobileMenu.classList.add('hidden');
-      });
+    searchToggle.addEventListener('click', function() {
+        searchContainer.classList.toggle('hidden');
+        navbarMenu.classList.add('hidden');
+        mobileMenu.classList.add('hidden');
+    });
 
-      searchToggle.addEventListener('click', function() {
-          searchContainer.classList.toggle('hidden');
-          navbarMenu.classList.add('hidden');
-          mobileMenu.classList.add('hidden');
-      });
+    menuToggle.addEventListener('click', function() {
+        mobileMenu.classList.toggle('hidden');
+        navbarMenu.classList.add('hidden');
+    });
 
-      menuToggle.addEventListener('click', function() {
-          mobileMenu.classList.toggle('hidden');
-          navbarMenu.classList.add('hidden');
-      });
+    moreCategoriesToggle.addEventListener('click', function() {
+        moreCategories.classList.toggle('hidden');
+        regionsMenu.classList.add('hidden');
+    });
 
-      moreCategoriesToggle.addEventListener('click', function(event) {
-          moreCategories.classList.toggle('hidden');
-          regionsMenu.classList.add('hidden');
-      });
+    regionsToggle.addEventListener('click', function() {
+        regionsMenu.classList.toggle('hidden');
+        moreCategories.classList.add('hidden');
+    });
 
-      regionsToggle.addEventListener('click', function(event) {
-          regionsMenu.classList.toggle('hidden');
-          moreCategories.classList.add('hidden');
-      });
+    moreCategoriesToggleMobile.addEventListener('click', function() {
+        moreCategoriesMobile.classList.toggle('hidden');
+        regionsMenuMobile.classList.add('hidden');
+    });
 
-      moreCategoriesToggleMobile.addEventListener('click', function(event) {
-          moreCategoriesMobile.classList.toggle('hidden');
-          regionsMenuMobile.classList.add('hidden');
-      });
+    regionsToggleMobile.addEventListener('click', function() {
+        regionsMenuMobile.classList.toggle('hidden');
+        moreCategoriesMobile.classList.add('hidden');
+    });
 
-      regionsToggleMobile.addEventListener('click', function(event) {
-          regionsMenuMobile.classList.toggle('hidden');
-          moreCategoriesMobile.classList.add('hidden');
-      });
-
-      document.addEventListener('click', function(event) {
-          if (!event.target.closest('#more-categories-toggle') && !event.target.closest('#more-categories')) {
-              moreCategories.classList.add('hidden');
-          }
-          if (!event.target.closest('#regions-toggle') && !event.target.closest('#regions-menu')) {
-              regionsMenu.classList.add('hidden');
-          }
-          if (!event.target.closest('#more-categories-toggle-mobile') && !event.target.closest('#more-categories-mobile')) {
-              moreCategoriesMobile.classList.add('hidden');
-          }
-          if (!event.target.closest('#regions-toggle-mobile') && !event.target.closest('#regions-menu-mobile')) {
-              regionsMenuMobile.classList.add('hidden');
-          }
-          if (!event.target.closest('#search-toggle') && !event.target.closest('#search-container')) {
-              searchContainer.classList.add('hidden');
-          }
-      });
-  });
-
+    document.addEventListener('click', function(event) {
+        if (!event.target.closest('#more-categories-toggle') && !event.target.closest('#more-categories')) {
+            moreCategories.classList.add('hidden');
+        }
+        if (!event.target.closest('#regions-toggle') && !event.target.closest('#regions-menu')) {
+            regionsMenu.classList.add('hidden');
+        }
+        if (!event.target.closest('#more-categories-toggle-mobile') && !event.target.closest('#more-categories-mobile')) {
+            moreCategoriesMobile.classList.add('hidden');
+        }
+        if (!event.target.closest('#regions-toggle-mobile') && !event.target.closest('#regions-menu-mobile')) {
+            regionsMenuMobile.classList.add('hidden');
+        }
+        if (!event.target.closest('#search-toggle') && !event.target.closest('#search-container') && !event.target.closest('#search-bar')) {
+            searchContainer.classList.add('hidden');
+        }
+    });
+});
 </script>
+

@@ -24,7 +24,7 @@
                 @foreach($news as $newsItem)
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-center">
-                        <img src="{{ asset('storage/' . $newsItem->image_url) }}" alt="{{ $newsItem->image_caption }}" class="w-10 h-10 rounded-full object-cover mx-auto">
+                        <img src="{{ asset('storage/' . $newsItem->image_url) }}" alt="{{ $newsItem->image_caption }}" class="w-16 h-16 rounded-xl object-cover mx-auto">
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
                         {{ $newsItem->title }}
